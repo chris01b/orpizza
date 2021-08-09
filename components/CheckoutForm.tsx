@@ -4,7 +4,7 @@ import React from "react";
 import Image from 'next/image';
 import {
   productSliderItem,
-  SwiperItem,
+  swiperItem,
   ImageContainer,
   InfoContainer,
   ButtonContainer,
@@ -30,7 +30,7 @@ export default function CheckoutForm() {
   return (
     <form action={backendURL + "/checkout_sessions"} method="POST">
       <div css={productSliderItem}>
-        <SwiperItem>
+        <div css={swiperItem}>
           <ImageContainer>
             <ProductImage>
               <Picture>
@@ -50,8 +50,8 @@ export default function CheckoutForm() {
             </ProductImage>
             <div css={titleContainer}>
               <div className="title-container__title">
-                <span css={title}>Via Code</span>
-                <span css={cals}>Any Pizza</span>
+                <span css={title}>&pizza</span>
+                <span css={cals}>Cheaper</span>
               </div>
             </div>
           </ImageContainer>
@@ -62,7 +62,7 @@ export default function CheckoutForm() {
               </RoundButtonInside>
             </RoundButton>
           </InfoContainer>
-        </SwiperItem>
+        </div>
       </div>
     </form>
   );

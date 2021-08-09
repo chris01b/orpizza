@@ -155,10 +155,19 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
           <CheckoutForm/>
           <div css={descriptionContainer}>
             <span css={action}>PAY</span> HERE, <span css={action}>RECEIVE</span> <span css={noun}>CODE</span>, <span
-            css={action}>ENTER</span> <span css={noun}>CODE</span> DURING <span css={noun}>CHECKOUT</span>, <span
+            css={action}>ENTER</span> <span css={noun}>CODE</span> DURING ONLINE <span css={noun}>CHECKOUT</span>, <span
             css={action}>ORDER</span> for <span css={noun}>FREE</span>, <span css={action}>SAVE</span> $10.25 - $3.00 =
-            <span css={noun}>$7.25</span>/PIZZA. <span css={noun}>REFUNDS</span> ACCEPTED and <span css={noun}
-            >CODES</span> <span css={action}>STACK!</span>
+            <span css={noun}>$7.25</span>/PIZZA. <span css={noun}>CODES</span> <span css={action}>STACK!</span>
+            <br />
+            <div css={{textAlign: 'center', marginTop: '2rem'}}>
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.t.me/IslamabadRodriguez"
+              >
+                <span css={noun}>REFUNDS</span> ACCEPTED
+              </a>
+            </div>
           </div>
         </div>}
       </div>

@@ -50,26 +50,11 @@ export const productSliderItem = css(mq({
   //margin-right: 20px;
 }))
 
-export const SwiperItem = styled.div`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  font-family: gotham;
-  color: #fff;
-  list-style: none;
-  
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 0 8px rgba(114,233,235,.6);
-  text-align: left;
-  border-radius: 20px;
-  background-color: #72e9eb;
-  width: 100%;
-`;
+export const swiperItem = css(mq({
+  boxShadow: ['0 0 20px rgba(114,233,235,.6)', '0 0 100px rgba(114,233,235,.6)'],
+  borderRadius: '20px',
+  backgroundColor: '#72e9eb'
+}));
 
 export const ImageContainer = styled.div`
   --swiper-theme-color: #007aff;
@@ -203,8 +188,10 @@ export const RoundButtonInside = styled.button`
   line-height: 40px;
   font-weight: 700;
   width: 100%;
-  
   text-align: center;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const ProductItemIcon = styled.div`
@@ -286,7 +273,6 @@ export const titleContainer = css(mq({
 export const title = css(mq({
   display: 'block',
   color: '#72e9eb',
-  textTransform: 'uppercase',
   fontWeight: 800,
   fontSize: ['16px', '24px'],
   textShadow: '0 0 10px #555',
@@ -298,6 +284,7 @@ export const cals = css(mq({
   color: '#72e9eb',
   fontWeight: 500,
   fontSize: ['10px', '16px'],
+  textTransform: 'uppercase',
   marginTop: '2px'
 }));
 
