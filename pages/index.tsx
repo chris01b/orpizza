@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>{typeof code !== 'string' ? '||pizza' : code}</title>
+        <title>{typeof code !== 'string' ? '||pizza' : code.length === 6 ? code : 'SERVED!'}</title>
         <meta name="description" content="||pizza - &pizza but cheaper" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon180.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon32.png" />

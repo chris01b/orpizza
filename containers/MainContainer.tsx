@@ -72,7 +72,11 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
       })
         .then(res => res.json())
         .then(data => {
-          setCode(data.code);
+          if (data.hasOwnProperty('code')) {
+            setCode(data.code);
+          } else if (data.hasOwnProperty('pasteUrl')) {
+            setCode(data.pasteUrl);
+          }
           setIsPolling(false);
         })
         .catch(e => console.error(e));
@@ -127,13 +131,13 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
           </div>
           : code !== null ?
             <a
-              href="https://order.andpizza.com"
+              href={code.length > 6 ? code : "https://order.andpizza.com"}
               target="_blank"
               rel="noreferrer noopener"
               css={[sideStyle, {color: '#fff', textAlign: 'center', fontSize: '48px', cursor: 'alias'}]}
             >
               <div>
-                <p>Your code: <br /> {code}</p>
+                <p>{code.length > 6 ? 'Your codes:' : 'Your code:'} <br /> {code}</p>
               </div>
             </a>
             : <div css={[sideStyle, mq({color: '#fff', fontSize: ['32px', '48px'], cursor: 'progress'})]}>
