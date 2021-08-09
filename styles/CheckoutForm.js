@@ -5,40 +5,6 @@ import facepaint from 'facepaint'
 
 export const mq = facepaint([500, 1200].map(bp => `@media (min-width: ${bp}px)`));
 
-// export const ProductSliderItem = styled.div`
-//   --swiper-theme-color: #007aff;
-//   --swiper-navigation-size: 44px;
-//   -webkit-font-smoothing: antialiased;
-//   text-rendering: optimizeLegibility;
-//   word-wrap: break-word;
-//   text-size-adjust: none;
-//   user-select: text!important;
-//   font-family: gotham;
-//   color: #fff;
-//   list-style: none;
-//   -webkit-tap-highlight-color: transparent;
-//   text-align: center;
-//   display: flex;
-//   -webkit-box-align: center;
-//   align-items: center;
-//   -webkit-box-pack: center;
-//   justify-content: center;
-//
-//   box-sizing: border-box;
-//   flex-shrink: 0;
-//   position: relative;
-//   overflow: visible!important;
-//   transition: all .2s;
-//   opacity: 1;
-//   //height: 100%;
-//   height: auto;
-//   max-height: 100%;
-//   max-width: 100%;
-//   will-change: transform;
-//   width: 480.333px;
-//   //margin-right: 20px;
-// `;
-
 export const productSliderItem = css(mq({
   transition: 'all .2s',
   opacity: 1,

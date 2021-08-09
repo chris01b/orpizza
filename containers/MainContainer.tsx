@@ -142,12 +142,14 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
             </a>
             : <div css={[sideStyle, mq({color: '#fff', fontSize: ['32px', '48px'], cursor: 'progress'})]}>
               <div>
-                <div
-                  css={mq({textAlign: 'left', marginLeft: ['3rem', '9rem']})}
-                >
-                  {'Almost there' + loadingEllipsis}
+                <div css={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                  <div css={mq({textAlign: 'left', width: ['260px', '310px'], marginLeft: ['5rem', '3rem']})}>
+                    {'Hang tight' + loadingEllipsis}
+                  </div>
+                  <div css={{textAlign: 'center'}}>
+                    This will take two minutes
+                  </div>
                 </div>
-                <div css={{textAlign: 'center'}}>This will take two minutes</div>
               </div>
             </div>
         }
