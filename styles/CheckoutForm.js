@@ -210,22 +210,24 @@ export const ProductImage = styled.div`
   background-color: #000;
 `;
 
-export const Picture = styled.div`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  font-family: gotham;
-  color: #fff;
-  list-style: none;
-  
-  text-align: left;
-  //cursor: pointer;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+export const Picture = styled.img`
+  position: absolute;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+`;
+
+export const pizzaPicStyle = styled.img`
+  position: absolute;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
 `;
 
 export const titleContainer = css(mq({
