@@ -12,7 +12,7 @@ import {
   Picture,
   titleContainer,
   title,
-  cals,
+  cals
 } from '../styles/CheckoutForm';
 
 const backendURL = 'https://us-central1-orpizza-ea5eb.cloudfunctions.net';

@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
+import { jsx, css, keyframes } from '@emotion/react';
 import { useRouter } from 'next/router';
 import CheckoutForm from "../components/CheckoutForm";
 import React, { useEffect, useState } from "react";
 import facepaint from 'facepaint'
+import { useMeasure } from 'react-use';
 import { useInterval } from '../functions/useInterval';
 
 export const mq = facepaint([845, 1200].map(bp => `@media (min-width: ${bp}px)`));
@@ -45,6 +46,11 @@ const noun = css(mq({
   fontSize: ['13.3px', '20px']
 }));
 
+const textOnLeft = css({
+  zIndex: 1,
+  textShadow: '7px 0 4px #000, 0 -7px 4px #000, 0 7px 4px #000, -7px 0 4px #000'
+});
+
 const backendURL = 'https://us-central1-orpizza-ea5eb.cloudfunctions.net';
 
 type MainContainerProps = {
@@ -60,7 +66,36 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
   const [transactionId, setTransactionId] = useState<string | string[] | undefined>();
   const [mainContentColor, setMainContentColor] = useState('#000');
   const [loadingEllipsis, setLoadingEllipsis] = useState('.');
+  const [prevWidth, setPrevWidth] = useState(0);
+  const [prevHeight, setPrevHeight] = useState(0);
+  const [leftSideDiv, { width, height }] = useMeasure<HTMLDivElement>();
+  const [verticalLines, setVerticalLines] = useState([]);
+  const [horizontalLines, setHorizontalLines] = useState([]);
   const router = useRouter();
+
+  useEffect(() => {
+    const space = 50;
+    if (Math.floor(width / space) * space !== prevWidth) {
+      // Generate Horizontal Lines
+      let lines = [];
+      for (let i = 0; i < height; i += space) {
+        const line = <rect key={i} fill="#72e9eb" x="0" y={i} width={Math.floor(width / space) * space + 2} height="4"/>;
+        lines.push(line);
+      }
+      setVerticalLines(lines);
+      setPrevWidth(width);
+    }
+    if (Math.floor(height / space) * space !== prevHeight) {
+      // Generate Vertical Lines
+      let lines = [];
+      for (let i = 0; i < width; i += space) {
+        const line = <rect key={i} fill="#72e9eb" x={i} y="0" width="4" height={Math.floor(height / space) * space + 2}/>;
+        lines.push(line);
+      }
+      setHorizontalLines(lines);
+      setPrevHeight(height);
+    }
+  }, [width, height])
 
   useInterval(() => {
     if (hasPaid && typeof transactionId === 'string' && code == null) {
@@ -118,16 +153,51 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
     <div css={[mainContentStyle, {backgroundColor: mainContentColor}]}>
       <div css={splitSidesStyle}>
         { !hasPaid ?
-          <div css={[sideStyle, {color: '#fff', textAlign: 'center', fontSize: '48px', cursor: 'e-resize'}]}>
+          <div
+            css={[sideStyle, mq({color: '#fff', textAlign: 'center', fontSize: ['48px', '48px'], cursor: 'e-resize'})]}
+            ref={leftSideDiv}
+          >
             <a
               href="https://andpizza.com"
               target="_blank"
               rel="noreferrer noopener"
-              css={{cursor: 'alias'}}
+              css={[textOnLeft, { cursor: 'alias' }]}
             >
               Pay $10.25&nbsp;
             </a>
-            <p css={{cursor: 'help'}}>or...</p>
+            <p css={[textOnLeft, { cursor: 'help' }]}>or...</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox={`0 0 ${width} ${height}`}
+              css={mq({
+                zIndex: 0,
+                position: 'absolute',
+                maxWidth: width,
+                maxHeight: height,
+                display: ['none', 'block']
+              })}
+            >
+              <defs>
+                <filter id="smallBlur" name="smallBlur">
+                  <feGaussianBlur stdDeviation="0.75"/>
+                </filter>
+                <filter id="bigBlur" name="bigBlur">
+                  <feGaussianBlur stdDeviation="6"/>
+                </filter>
+              </defs>
+              <g id="Vertical_Lines_Fade" data-name="Vertical Lines Fade" filter="url(#bigBlur)">
+                {verticalLines}
+              </g>
+              <g id="Vertical_Lines" data-name="Vertical Lines" filter="url(#smallBlur)">
+                {verticalLines}
+              </g>
+              <g id="Horizontal_Fade" data-name="Horizontal Fade" filter="url(#bigBlur)">
+                {horizontalLines}
+              </g>
+              <g id="Horizontal_Lines" data-name="Horizontal Lines" filter="url(#smallBlur)">
+                {horizontalLines}
+              </g>
+            </svg>
           </div>
           : code !== null ?
             <a

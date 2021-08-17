@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
+import { jsx, css, keyframes } from '@emotion/react';
 import styled from "@emotion/styled";
 import facepaint from 'facepaint'
 
@@ -18,6 +18,10 @@ export const productSliderItem = css(mq({
 
 export const swiperItem = css(mq({
   boxShadow: ['0 0 20px rgba(114,233,235,.6)', '0 0 100px rgba(114,233,235,.6)'],
+  transition: 'box-shadow 0.4s linear',
+  '&:hover': {
+    boxShadow: '0 0 100px #7356e3'
+  },
   borderRadius: '20px',
   backgroundColor: '#72e9eb'
 }));
@@ -74,42 +78,6 @@ export const InfoContainer = styled.div`
   min-height: 56px;
 `;
 
-export const ButtonContainer = styled.div`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  font-family: gotham;
-  list-style: none;
-  
-  text-align: left;
-  color: #000;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-`;
-
-export const AddToCart = styled.div`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  font-family: gotham;
-  list-style: none;
-  
-  text-align: left;
-  color: #000;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  cursor: pointer;
-`;
-
 export const RoundButton = styled.div`
   --swiper-theme-color: #007aff;
   --swiper-navigation-size: 44px;
@@ -160,30 +128,6 @@ export const RoundButtonInside = styled.button`
   }
 `;
 
-export const ProductItemIcon = styled.div`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  list-style: none;
-  font-family: inherit;
-  font-style: inherit;
-  font-variant: inherit;
-  //cursor: pointer;
-  color: #72e9eb;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 40px;
-  font-weight: 700;
-  white-space: nowrap;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  display: inline-block;
-  width: 50px;
-`;
-
 export const ProductImage = styled.div`
   --swiper-theme-color: #007aff;
   --swiper-navigation-size: 44px;
@@ -220,16 +164,6 @@ export const Picture = styled.img`
   border-radius: 20px 20px 0 0;
 `;
 
-export const pizzaPicStyle = styled.img`
-  position: absolute;
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  border-radius: 20px 20px 0 0;
-`;
-
 export const titleContainer = css(mq({
   cursor: 'default',
   display: 'flex',
@@ -255,24 +189,3 @@ export const cals = css(mq({
   textTransform: 'uppercase',
   marginTop: '2px'
 }));
-
-export const Description = styled.span`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  font-family: gotham;
-  list-style: none;
-  text-align: left;
-  color: #000;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  //cursor: pointer;
-  line-height: 1.1;
-  font-size: 14px;
-  transition: none 0s ease 0s;
-`;
