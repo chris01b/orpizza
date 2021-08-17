@@ -13,17 +13,21 @@ export const productSliderItem = css(mq({
   maxWidth: '100%',
   willChange: 'transform',
   width: ['auto', '480.333px'],
-  //margin-right: 20px;
-}))
+}));
 
+const checkoutPop = keyframes`
+  100% { opacity: 1 }
+`;
 export const swiperItem = css(mq({
   boxShadow: ['0 0 20px rgba(114,233,235,.6)', '0 0 100px rgba(114,233,235,.6)'],
-  transition: 'box-shadow 0.4s linear',
+  transition: 'box-shadow 0.2s linear',
   '&:hover': {
-    boxShadow: '0 0 100px #7356e3'
+    boxShadow: '0 0 300px rgba(114,233,235,1)'
   },
+  // animation: `${checkoutPop} 1s 1.5s forwards`,
+  // opacity: 0
   borderRadius: '20px',
-  backgroundColor: '#72e9eb'
+  backgroundColor: '#72e9eb',
 }));
 
 export const ImageContainer = styled.div`

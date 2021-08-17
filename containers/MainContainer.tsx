@@ -51,6 +51,20 @@ const textOnLeft = css({
   textShadow: '7px 0 4px #000, 0 -7px 4px #000, 0 7px 4px #000, -7px 0 4px #000'
 });
 
+const slideInXAnim = keyframes`
+  100% { transform: translateX(0%) }
+`;
+const slideInXStyle = css`
+  animation: ${slideInXAnim} 1s 1s forwards;
+`;
+
+const slideInYAnim = keyframes`
+  100% { transform: translateY(0%) }
+`;
+const slideInYStyle = css`
+  animation: ${slideInYAnim} 1s 1s forwards;
+`;
+
 const backendURL = 'https://us-central1-orpizza-ea5eb.cloudfunctions.net';
 
 type MainContainerProps = {
@@ -165,7 +179,7 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
             >
               Pay $10.25&nbsp;
             </a>
-            <p css={[textOnLeft, { cursor: 'help' }]}>or...</p>
+            <p css={[textOnLeft, slideInYStyle, { cursor: 'help', transform: 'translateY(-100%)' }]}>or...</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox={`0 0 ${width} ${height}`}
@@ -185,16 +199,16 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
                   <feGaussianBlur stdDeviation="6"/>
                 </filter>
               </defs>
-              <g id="Vertical_Lines_Fade" data-name="Vertical Lines Fade" filter="url(#bigBlur)">
+              <g id="Vertical_Lines_Fade" data-name="Vertical Lines Fade" filter="url(#bigBlur)" css={[slideInXStyle, {transform: 'translateX(-100%)'}]}>
                 {verticalLines}
               </g>
-              <g id="Vertical_Lines" data-name="Vertical Lines" filter="url(#smallBlur)">
+              <g id="Vertical_Lines" data-name="Vertical Lines" filter="url(#smallBlur)" css={[slideInXStyle, {transform: 'translateX(-100%)'}]}>
                 {verticalLines}
               </g>
-              <g id="Horizontal_Fade" data-name="Horizontal Fade" filter="url(#bigBlur)">
+              <g id="Horizontal_Fade" data-name="Horizontal Fade" filter="url(#bigBlur)" css={[slideInYStyle, {transform: 'translateY(-100%)'}]}>
                 {horizontalLines}
               </g>
-              <g id="Horizontal_Lines" data-name="Horizontal Lines" filter="url(#smallBlur)">
+              <g id="Horizontal_Lines" data-name="Horizontal Lines" filter="url(#smallBlur)" css={[slideInYStyle, {transform: 'translateY(-100%)'}]}>
                 {horizontalLines}
               </g>
             </svg>
