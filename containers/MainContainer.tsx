@@ -2,7 +2,7 @@
 import { jsx, css, keyframes } from '@emotion/react';
 import { useRouter } from 'next/router';
 import CheckoutForm from "../components/CheckoutForm";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import facepaint from 'facepaint'
 import { useMeasure } from 'react-use';
 import { useInterval } from '../functions/useInterval';
@@ -55,15 +55,31 @@ const slideInXAnim = keyframes`
   100% { transform: translateX(0%) }
 `;
 const slideInXStyle = css`
-  animation: ${slideInXAnim} 1s 1s forwards;
+  transform: translateX(-100%);
+  animation: ${slideInXAnim} 1s forwards 1s;
 `;
 
 const slideInYAnim = keyframes`
   100% { transform: translateY(0%) }
 `;
 const slideInYStyle = css`
-  animation: ${slideInYAnim} 1s 1s forwards;
+  transform: translateY(-100%);
+  animation: ${slideInYAnim} 1s forwards 1s;
 `;
+
+function useFilter(filterName): string | null {
+  const filter = useRef<string>();
+
+  useEffect(() => {
+    // For an unknown reason Safari is not performant enough to animate filters
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (!isSafari) {
+      filter.current = `url(#${filterName})`;
+    }
+  }, [filterName]);
+
+  return filter.current;
+}
 
 const backendURL = 'https://us-central1-orpizza-ea5eb.cloudfunctions.net';
 
@@ -86,6 +102,9 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
   const [verticalLines, setVerticalLines] = useState([]);
   const [horizontalLines, setHorizontalLines] = useState([]);
   const router = useRouter();
+
+  const bigBlur = useFilter('bigBlur');
+  const smallBlur = useFilter('smallBlur');
 
   useEffect(() => {
     const space = 50;
@@ -199,16 +218,16 @@ export function MainContainer({ code, setCode, setBorderColor, setBorderTextColo
                   <feGaussianBlur stdDeviation="6"/>
                 </filter>
               </defs>
-              <g id="Vertical_Lines_Fade" data-name="Vertical Lines Fade" filter="url(#bigBlur)" css={[slideInXStyle, {transform: 'translateX(-100%)'}]}>
+              <g id="Vertical_Lines_Fade" data-name="Vertical Lines Fade" filter={bigBlur} css={[slideInXStyle, {transform: 'translateX(-100%)'}]}>
                 {verticalLines}
               </g>
-              <g id="Vertical_Lines" data-name="Vertical Lines" filter="url(#smallBlur)" css={[slideInXStyle, {transform: 'translateX(-100%)'}]}>
+              <g id="Vertical_Lines" data-name="Vertical Lines" filter={smallBlur} css={[slideInXStyle, {transform: 'translateX(-100%)'}]}>
                 {verticalLines}
               </g>
-              <g id="Horizontal_Fade" data-name="Horizontal Fade" filter="url(#bigBlur)" css={[slideInYStyle, {transform: 'translateY(-100%)'}]}>
+              <g id="Horizontal_Fade" data-name="Horizontal Fade" filter={bigBlur} css={[slideInYStyle, {transform: 'translateY(-100%)'}]}>
                 {horizontalLines}
               </g>
-              <g id="Horizontal_Lines" data-name="Horizontal Lines" filter="url(#smallBlur)" css={[slideInYStyle, {transform: 'translateY(-100%)'}]}>
+              <g id="Horizontal_Lines" data-name="Horizontal Lines" filter={smallBlur} css={[slideInYStyle, {transform: 'translateY(-100%)'}]}>
                 {horizontalLines}
               </g>
             </svg>

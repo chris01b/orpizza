@@ -102,19 +102,7 @@ export const RoundButton = styled.div`
 `;
 
 export const RoundButtonInside = styled.button`
-  --swiper-theme-color: #007aff;
-  --swiper-navigation-size: 44px;
-  -webkit-font-smoothing: antialiased;
-  word-wrap: break-word;
-  text-size-adjust: none;
-  user-select: text!important;
-  list-style: none;
-  -webkit-tap-highlight-color: transparent;
-  box-sizing: border-box;
   border: 0;
-  font-family: inherit;
-  font-style: inherit;
-  font-variant: inherit;
   cursor: pointer;
   -webkit-appearance: button;
   background-color: #000;
@@ -129,6 +117,7 @@ export const RoundButtonInside = styled.button`
   text-align: center;
   &:hover {
     text-decoration: underline;
+    background-color: rgb(20, 30, 30);
   }
 `;
 
