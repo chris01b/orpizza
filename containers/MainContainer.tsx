@@ -4,8 +4,7 @@ import { useRouter } from 'next/router';
 import CheckoutForm from "../components/CheckoutForm";
 import React, { useEffect, useRef, useState } from "react";
 import facepaint from 'facepaint'
-import { useMeasure } from 'react-use';
-import { useInterval } from '../functions/useInterval';
+import { useMeasure, useInterval } from 'react-use';
 
 export const mq = facepaint([845, 1200].map(bp => `@media (min-width: ${bp}px)`));
 
